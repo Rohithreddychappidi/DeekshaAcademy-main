@@ -1,0 +1,256 @@
+@import "tailwindcss";
+
+:root {
+  /* Deeksha Tech Academy Brand Colors */
+  --primary: #0f172a;
+  --secondary: #2563eb;
+  --accent: #06b6d4;
+  --background: #ffffff;
+  --foreground: #171717;
+  
+  /* Extended Colors */
+  --primary-light: #1e293b;
+  --primary-dark: #0a1028;
+  --secondary-light: #3b82f6;
+  --secondary-dark: #1d4ed8;
+  --accent-light: #22d3ee;
+  --accent-dark: #0891b2;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --destructive: #ef4444;
+  
+  /* Neutral Colors */
+  --slate-50: #f8fafc;
+  --slate-100: #f1f5f9;
+  --slate-200: #e2e8f0;
+  --slate-300: #cbd5e1;
+  --slate-400: #94a3b8;
+  --slate-500: #64748b;
+  --slate-600: #475569;
+  --slate-700: #334155;
+  --slate-800: #1e293b;
+  --slate-900: #0f172a;
+}
+
+@theme inline {
+  --color-primary: rgb(15 23 42);
+  --color-secondary: rgb(37 99 235);
+  --color-accent: rgb(6 182 212);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-success: rgb(16 185 129);
+  --color-warning: rgb(245 158 11);
+  --color-destructive: rgb(239 68 68);
+  
+  /* Gradient support */
+  --color-gradient-primary: linear-gradient(135deg, rgb(15 23 42) 0%, rgb(30 41 59) 100%);
+  --color-gradient-secondary: linear-gradient(135deg, rgb(37 99 235) 0%, rgb(59 130 246) 100%);
+  --color-gradient-accent: linear-gradient(135deg, rgb(6 182 212) 0%, rgb(34 211 238) 100%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0f172a;
+    --foreground: #f1f5f9;
+  }
+}
+
+/* Global Styles */
+* {
+  @apply border-slate-200;
+}
+
+*::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--slate-100);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--slate-400);
+  border-radius: 6px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--slate-600);
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', 'Poppins', Arial, Helvetica, sans-serif;
+  @apply antialiased;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Utility Classes */
+.fade-in {
+  @apply animate-[fadeIn_0.5s_ease-in-out];
+}
+
+.slide-in-up {
+  @apply animate-[slideInUp_0.5s_ease-out];
+}
+
+.slide-in-down {
+  @apply animate-[slideInDown_0.5s_ease-out];
+}
+
+.slide-in-left {
+  @apply animate-[slideInLeft_0.5s_ease-out];
+}
+
+.slide-in-right {
+  @apply animate-[slideInRight_0.5s_ease-out];
+}
+
+.gradient-primary {
+  @apply bg-gradient-to-r from-slate-900 to-blue-900;
+}
+
+.gradient-secondary {
+  @apply bg-gradient-to-r from-blue-600 to-cyan-500;
+}
+
+.gradient-accent {
+  @apply bg-gradient-to-br from-cyan-500 to-blue-600;
+}
+
+.text-gradient {
+  @apply bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent;
+}
+
+.btn-primary {
+  @apply rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white transition-all hover:bg-blue-700 hover:shadow-lg active:scale-95;
+}
+
+.btn-secondary {
+  @apply rounded-lg border-2 border-slate-300 px-6 py-3 font-semibold text-slate-900 transition-all hover:border-blue-600 hover:text-blue-600 active:scale-95;
+}
+
+.btn-outline {
+  @apply rounded-lg border-2 border-blue-600 px-6 py-3 font-semibold text-blue-600 transition-all hover:bg-blue-50 active:scale-95;
+}
+
+.card-shadow {
+  @apply shadow-md transition-shadow hover:shadow-lg;
+}
+
+.glass-effect {
+  @apply bg-white/20 backdrop-blur-md border border-white/30;
+}
+
+/* Link Styles */
+a {
+  @apply text-blue-600 transition-colors hover:text-blue-700 hover:underline;
+}
+
+a.no-underline {
+  @apply no-underline;
+}
+
+/* Form Styles */
+input,
+textarea,
+select {
+  @apply rounded border border-slate-300 px-4 py-2 transition-colors focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-200;
+}
+
+textarea {
+  @apply resize-none;
+}
+
+/* Responsive Utilities */
+@media (max-width: 640px) {
+  .hide-mobile {
+    @apply hidden;
+  }
+}
+
+@media (min-width: 641px) {
+  .show-mobile {
+    @apply hidden;
+  }
+}
