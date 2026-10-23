@@ -39,23 +39,33 @@ export default function Hero({
           : { backgroundColor: '#0F172A' }
       }
     >
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-950/85 via-slate-900/70 to-slate-950/90 backdrop-blur-[1px]" />
+      {/* Bright Luminous Ambient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-950/65 via-slate-900/40 to-slate-950/75 backdrop-blur-[0.5px]" />
 
-      {/* Liquid Ambient Light Orbs for Glassmorphism Depth */}
-      <div className="absolute top-1/4 left-1/4 h-72 w-72 rounded-full bg-emerald-500/20 blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-1/3 right-1/4 h-80 w-80 rounded-full bg-blue-600/25 blur-[120px] pointer-events-none" />
-      <div className="absolute top-1/3 right-1/3 h-64 w-64 rounded-full bg-cyan-400/15 blur-[90px] pointer-events-none" />
+      {/* Luminous Ambient Light Orbs for Glassmorphism Depth */}
+      <div className="absolute top-1/4 left-1/4 h-72 w-72 rounded-full bg-emerald-400/20 blur-[110px] pointer-events-none" />
+      <div className="absolute bottom-1/3 right-1/4 h-80 w-80 rounded-full bg-amber-400/15 blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/3 right-1/3 h-64 w-64 rounded-full bg-teal-300/15 blur-[90px] pointer-events-none" />
 
       {/* Content */}
       <div className="relative flex min-h-screen items-center justify-center py-20">
         <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
           <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/15 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-white shadow-lg backdrop-blur-md"
+          >
+            <span className="flex h-2 w-2 rounded-full bg-[#25D366] animate-pulse" />
+            <span>Admissions Open · New Batches Enrolling</span>
+          </motion.div>
+
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="mb-4 text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
+            <h1 className="mb-4 text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight drop-shadow-[0_4px_16px_rgba(0,0,0,0.6)]">
               {title}
             </h1>
           </motion.div>
@@ -65,7 +75,7 @@ export default function Hero({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <p className="mb-6 text-base sm:text-xl lg:text-2xl text-blue-200/95 font-medium">
+            <p className="mb-6 text-base sm:text-xl lg:text-2xl text-slate-100 font-semibold drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
               {subtitle}
             </p>
           </motion.div>
@@ -76,7 +86,7 @@ export default function Hero({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <p className="mb-8 text-sm sm:text-base lg:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
+              <p className="mb-8 text-sm sm:text-base lg:text-lg text-slate-200 max-w-2xl mx-auto leading-relaxed drop-shadow-[0_1px_4px_rgba(0,0,0,0.4)]">
                 {description}
               </p>
             </motion.div>
