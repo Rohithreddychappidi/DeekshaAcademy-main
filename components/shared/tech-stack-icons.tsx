@@ -172,13 +172,13 @@ export function TechStackShowcase({ slug }: { slug: string }) {
       {techStack.map((tech) => (
         <div
           key={tech.name}
-          className="group relative flex flex-col items-center justify-center rounded-xl border border-slate-800 bg-slate-900/60 p-4 text-center backdrop-blur-sm transition-all duration-300 hover:border-slate-700 hover:bg-slate-800/80 hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/10"
+          className="group relative flex flex-col items-center justify-center rounded-2xl border border-white/10 bg-slate-900/65 p-4 text-center backdrop-blur-md transition-all duration-300 hover:border-cyan-500/40 hover:bg-slate-800/80 hover:-translate-y-1 hover:shadow-xl hover:shadow-cyan-500/10"
         >
-          <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-slate-950/80 p-2.5 shadow-inner ring-1 ring-white/10 group-hover:scale-110 transition-transform">
+          <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-slate-950/80 p-2.5 shadow-inner ring-1 ring-white/10 group-hover:scale-110 transition-transform">
             {tech.icon}
           </div>
-          <span className="text-sm font-semibold text-white tracking-wide">{tech.name}</span>
-          <span className={`mt-1.5 inline-block rounded-full border px-2 py-0.5 text-[10px] font-medium ${tech.badgeColor}`}>
+          <span className="text-xs sm:text-sm font-bold text-white tracking-wide">{tech.name}</span>
+          <span className={`mt-1.5 inline-block rounded-full border px-2 py-0.5 text-[10px] font-semibold ${tech.badgeColor}`}>
             {tech.category}
           </span>
         </div>

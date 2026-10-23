@@ -27,15 +27,15 @@ export default function FeatureCards({ features }: FeatureCardsProps) {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
           >
-            <Card className="h-full transition-all hover:shadow-lg hover:border-blue-200">
+            <Card className="h-full liquid-glass-card rounded-2xl border border-white/85 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_35px_-8px_rgba(15,23,42,0.1)]">
               <CardContent className="pt-6">
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100">
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500/15 via-cyan-500/15 to-emerald-500/20 border border-blue-500/20 text-blue-600 shadow-sm">
                   <IconComponent className="h-6 w-6 text-blue-600" />
                 </div>
-                <h3 className="mb-2 font-semibold text-slate-900">
+                <h3 className="mb-2 text-lg font-bold text-slate-900 tracking-tight">
                   {feature.title}
                 </h3>
-                <p className="text-sm text-slate-600">
+                <p className="text-sm text-slate-600 leading-relaxed">
                   {feature.description}
                 </p>
               </CardContent>
