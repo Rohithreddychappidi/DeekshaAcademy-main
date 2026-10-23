@@ -29,12 +29,44 @@ export async function generateMetadata({ params }: CoursePageProps): Promise<Met
     return { title: 'Course Not Found' };
   }
 
+  const courseUrl = `https://deekshaacademy.com/courses/${course.slug}`;
+  const courseImage = `https://deekshaacademy.com${course.image || '/images/home-hero-banner.jpg'}`;
+
   return {
     title: `${course.title} Course | Deeksha Tech Academy`,
-    description: course.shortDescription,
+    description: `${course.shortDescription} Master ${course.skills.slice(0, 4).join(', ')} with industry projects and career mentoring.`,
+    keywords: [
+      course.title,
+      `${course.title} Course`,
+      `${course.title} Training in Bangalore`,
+      `${course.title} Certification`,
+      ...course.skills,
+      'Deeksha Tech Academy',
+      'Tech Upskilling Bangalore',
+      'Online Instructor-Led Training',
+    ],
+    alternates: {
+      canonical: courseUrl,
+    },
     openGraph: {
       title: `${course.title} Course | Deeksha Tech Academy`,
       description: course.shortDescription,
+      url: courseUrl,
+      type: 'article',
+      images: [
+        {
+          url: courseImage,
+          width: 1200,
+          height: 630,
+          alt: `${course.title} Course - Deeksha Tech Academy`,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${course.title} Course | Deeksha Tech Academy`,
+      description: course.shortDescription,
+      images: [courseImage],
     },
   };
 }
@@ -64,11 +96,16 @@ export default async function CoursePage({ params }: CoursePageProps) {
     "name": course.title,
     "description": course.description,
     "url": `https://deekshaacademy.com/courses/${course.slug}`,
-    "image": `https://deekshaacademy.com/images/courses/${course.slug}.jpg`,
+    "image": `https://deekshaacademy.com${course.image || '/images/home-hero-banner.jpg'}`,
     "educationLevel": course.level,
     "instructor": {
       "@type": "Person",
       "name": course.instructors?.[0]?.name || "Deeksha Tech Academy"
+    },
+    "provider": {
+      "@type": "EducationalOrganization",
+      "name": "Deeksha Tech Academy",
+      "sameAs": "https://deekshaacademy.com"
     },
     "aggregateRating": {
       "@type": "AggregateRating",
@@ -79,9 +116,35 @@ export default async function CoursePage({ params }: CoursePageProps) {
       "@type": "Offer",
       "price": course.price,
       "priceCurrency": "INR",
-      "availability": "https://schema.org/InStock"
+      "availability": "https://schema.org/InStock",
+      "validFrom": "2024-01-01"
     },
     "duration": `PT${course.duration.split(' ')[0]}W`
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://deekshaacademy.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Courses",
+        "item": "https://deekshaacademy.com/courses"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": course.title,
+        "item": `https://deekshaacademy.com/courses/${course.slug}`
+      }
+    ]
   };
 
   const faqSchema = {
@@ -106,6 +169,10 @@ export default async function CoursePage({ params }: CoursePageProps) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <script
         type="application/ld+json"

@@ -19,12 +19,41 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     return { title: 'Post Not Found' };
   }
 
+  const postUrl = `https://deekshaacademy.com/blog/${post.slug}`;
+  const postImage = 'https://deekshaacademy.com/images/home-hero-banner.jpg';
+
   return {
     title: `${post.title} | Deeksha Tech Academy Blog`,
     description: post.description,
+    keywords: [
+      ...post.tags,
+      post.category,
+      'Deeksha Tech Academy Blog',
+      'Tech Upskilling Bangalore',
+      'AI Tutorials',
+    ],
+    alternates: {
+      canonical: postUrl,
+    },
     openGraph: {
       title: `${post.title} | Deeksha Tech Academy Blog`,
       description: post.description,
+      url: postUrl,
+      type: 'article',
+      images: [
+        {
+          url: postImage,
+          width: 1200,
+          height: 630,
+          alt: `${post.title} - Deeksha Tech Academy Blog`,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${post.title} | Deeksha Tech Academy Blog`,
+      description: post.description,
+      images: [postImage],
     },
   };
 }
@@ -53,7 +82,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     "@type": "BlogPosting",
     "headline": post.title,
     "description": post.description,
-    "image": `https://deekshaacademy.com/images/blog/${post.slug}.jpg`,
+    "image": "https://deekshaacademy.com/images/home-hero-banner.jpg",
     "datePublished": new Date(post.createdAt).toISOString(),
     "dateModified": new Date(post.updatedAt).toISOString(),
     "author": {
@@ -66,7 +95,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       "name": "Deeksha Tech Academy",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://deekshaacademy.com/logo.png"
+        "url": "https://deekshaacademy.com/apple-touch-icon.png"
       }
     },
     "articleBody": post.content,
@@ -74,11 +103,40 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     "url": `https://deekshaacademy.com/blog/${post.slug}`
   };
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://deekshaacademy.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://deekshaacademy.com/blog"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": post.title,
+        "item": `https://deekshaacademy.com/blog/${post.slug}`
+      }
+    ]
+  };
+
   return (
     <main>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       {/* Header */}
       <section className="bg-gradient-to-b from-slate-900 to-slate-800 py-12 sm:py-16 lg:py-20">
